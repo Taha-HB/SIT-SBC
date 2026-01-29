@@ -5372,6 +5372,30 @@
                 generatePDF();
             }
         };
+        // In frontend JavaScript, update API calls:
+const API_BASE_URL = 'http://localhost:5000/api';
+
+// Example login
+async function login(email, password, studentId) {
+  const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password, studentId })
+  });
+  return response.json();
+}
+
+// Example with authentication
+async function getMeetings() {
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${API_BASE_URL}/meetings`, {
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  return response.json();
+}
     </script>
 </body>
 </html>
